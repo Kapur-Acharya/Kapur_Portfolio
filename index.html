@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapur Acharya — Tech Enthusiast & BIT Student</title>
+<meta name="description" content="Kapur Acharya — BIT student and builder creating polished websites and practical web tools.">
+<meta property="og:title" content="Kapur Acharya — Developer & BIT Student">
+<meta property="og:description" content="I build polished websites and practical web tools. Explore projects, skills, and contact info.">
+<meta property="og:image" content="assets/kapur_profile.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="assets/kapur_profile.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="hero.css">
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="section-layouts.css">
+<link rel="stylesheet" href="art-gallery.css">
+<link rel="stylesheet" href="content-components.css">
+<link rel="stylesheet" href="interactive.css">
+<link rel="stylesheet" href="guestbook.css">
+</head>
+<body>
+
+<!-- Skip link for accessibility -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- Custom cursor (desktop only, JS controlled) -->
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- Background layer -->
+<div class="bg-fx" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <canvas id="particles"></canvas>
+  <div class="bg-glow bg-glow--one"></div>
+  <div class="bg-glow bg-glow--two"></div>
+</div>
+
+<!-- NAVIGATION -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#home" class="nav__logo">KAPUR<span class="dot">.</span></a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#home" class="nav__link is-active" data-nav>Home</a>
+      <a href="#skills" class="nav__link" data-nav>Skills</a>
+      <a href="#project" class="nav__link" data-nav>Project</a>
+      <a href="#art" class="nav__link" data-nav>Art</a>
+      <a href="#wall" class="nav__link" data-nav>Wall</a>
+      <a href="#contact" class="nav__link" data-nav>Contact</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile Primary">
+    <a href="#home" data-nav-mobile>Home</a>
+    <a href="#skills" data-nav-mobile>Skills</a>
+    <a href="#project" data-nav-mobile>Project</a>
+    <a href="#art" data-nav-mobile>Art</a>
+    <a href="#wall" data-nav-mobile>Wall</a>
+    <a href="#contact" data-nav-mobile>Contact</a>
+  </nav>
+  <div class="mobile-menu__socials">
+    <a href="https://github.com/kapur-acharya" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://linkedin.com/in/kapur-acharya" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:kapur.builds@gmail.com">Email</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <span class="hero__ghost" aria-hidden="true">BUILD</span>
+    <div class="hero__inner">
+      <div class="hero__text">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>Currently awake, currently coding</p>
+
+        <h1 class="hero__heading" data-reveal>
+          Hi, I'm <span class="accent-text scribble">Kapur</span><span class="hero__heading-tail">.</span>
+        </h1>
+        <h2 class="hero__subheading" data-reveal>Developer, BIT student &amp; visual artist <span class="hero__subheading-note">— building useful things with personality</span></h2>
+
+        <p class="hero__desc" data-reveal>
+          I build websites and turn ideas into useful, polished projects.
+        </p>
+
+        <div class="hero__cta" data-reveal>
+          <a href="#project" class="btn btn--primary">Explore My Work</a>
+          <a href="#contact" class="btn btn--ghost">Let's Connect</a>
+        </div>
+
+        <div class="hero__socials" data-reveal>
+          <a href="https://github.com/kapur-acharya" target="_blank" rel="noopener" aria-label="GitHub profile" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.02 1.75 2.68 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.39-5.27 5.67.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.21.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://linkedin.com/in/kapur-acharya" target="_blank" rel="noopener" aria-label="LinkedIn profile" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="mailto:kapur.builds@gmail.com" aria-label="Send email" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm10 9.53L3.4 6.5A1 1 0 0 0 3 7v10h18V7a1 1 0 0 0-.4-.5L12 13.53Zm8.2-7.53H3.8L12 12.5l8.2-6.5Z"/></svg>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
+
+        <div class="hero__visual" data-reveal>
+        <div class="hero__portrait">
+          <img src="assets/kapur_profile.jpg" alt="Portrait of Kapur Acharya">
+          <span>hello, I'm Kapur</span>
+        </div>
+        <span class="hero__tape hero__tape--one" aria-hidden="true">est. 2006</span>
+        <div class="hero__blob" aria-hidden="true"></div>
+        <div class="hero__ring" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <button class="scroll-cue" id="scrollCue" aria-label="Scroll to skills section">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg>
+    </button>
+  </section>
+
+  <!-- TERMINAL -->
+  <section class="section hero-terminal-section">
+    <div class="section__inner">
+      <div class="terminal terminal--wide" data-reveal>
+        <div class="terminal__bar">
+          <span class="dot dot--r"></span>
+          <span class="dot dot--y"></span>
+          <span class="dot dot--g"></span>
+          <span class="terminal__title">kapur@portfolio:~</span>
+        </div>
+        <div class="terminal__body" id="heroTerminal">
+          <!-- typed via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT: kept in the source as a compact fallback for direct links. -->
+  <section class="section about" id="about">
+    <div class="section__inner">
+      <p class="section__eyebrow" data-reveal>01 · About</p>
+      <h2 class="section__heading" data-reveal>A little about me<span class="accent-text">,</span> actually.</h2>
+
+      <div class="about__grid">
+        <div class="about__photo" data-reveal>
+          <div class="photo-frame">
+              <img src="assets/kapur_profile.jpg" alt="Portrait of Kapur Acharya" loading="lazy"
+                onerror="this.closest('.photo-frame').classList.add('photo-frame--empty')">
+              <span class="photo-frame__empty-label">Add your photo<br>assets/kapur_profile.jpg</span>
+          </div>
+          <span class="photo-frame__caption">Kapur, mid-debugging session probably</span>
+        </div>
+
+        <div class="about__text" data-reveal>
+          <p>
+            I'm a BIT student who enjoys building, debugging, and learning. I build
+            useful web experiences and make art when I need to think differently.
+          </p>
+          <p>
+            I build websites and explore full-stack ideas, from interface details
+            to the logic behind the screen.
+          </p>
+          <p>
+            I'm curious, consistent, and excited about where this is heading.
+          </p>
+
+          <div class="about__facts">
+            <div class="fact-card fact-card--rot-a">
+              <span class="fact-card__label">Studying</span>
+              <span class="fact-card__value">Bachelor of Information Technology</span>
+            </div>
+            <div class="fact-card fact-card--rot-b">
+              <span class="fact-card__label">Focused on</span>
+              <span class="fact-card__value">Full-Stack Web Development</span>
+            </div>
+            <div class="fact-card">
+              <span class="fact-card__label">Also into</span>
+              <span class="fact-card__value">Digital Art &amp; Visual Thinking</span>
+            </div>
+            <div class="fact-card fact-card--rot-a">
+              <span class="fact-card__label">Currently</span>
+              <span class="fact-card__value">Building &amp; Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT I DO -->
+  <section class="section whatido">
+    <div class="section__inner">
+      <h2 class="section__heading" data-reveal>Where my focus goes<span class="accent-text">.</span> <span class="section__heading-small">(most days)</span></h2>
+
+      <div class="card-grid card-grid--4">
+        <article class="do-card do-card--a" data-reveal>
+          <div class="do-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          </div>
+          <h3>Web Development</h3>
+          <p>Building responsive and interactive websites using modern web technologies.</p>
+        </article>
+
+        <article class="do-card do-card--b" data-reveal>
+          <div class="do-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10M2 17h20l-2 4H4l-2-4Z"/></svg>
+          </div>
+          <h3>Full-Stack Development</h3>
+          <p>Figuring out how frontend and backend actually talk to each other, not just reading about it.</p>
+        </article>
+
+        <article class="do-card do-card--a" data-reveal>
+          <div class="do-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 10l4.55 2.68a1 1 0 0 1 0 1.72L15 17M4 7h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4"/></svg>
+          </div>
+          <h3>Creative Technology</h3>
+          <p>Combining technology with interests such as games, digital experiences, and filmmaking.</p>
+        </article>
+
+        <article class="do-card do-card--b" data-reveal>
+          <div class="do-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M3 9v10a2 2 0 0 0 2 2h4m-6-12h18m-8 5v9"/></svg>
+          </div>
+          <h3>Problem Solving</h3>
+          <p>DSA practice, mostly — and the slow realization that most bugs are just logic errors wearing a disguise.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section skills" id="skills">
+    <div class="section__inner">
+      <h2 class="section__heading" data-reveal>Tools of the craft.</h2>
+      <p class="section__lead" data-reveal>A working toolkit, plus everything I'm actively leveling up.</p>
+
+      <div class="skills__grid">
+        <div class="skill-group" data-reveal>
+          <h3 class="skill-group__title">Frontend</h3>
+          <div class="skill-badges">
+            <span class="badge">HTML5</span>
+            <span class="badge">CSS3</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">Responsive Design</span>
+            <span class="badge">DOM Manipulation</span>
+            <span class="badge">Local Storage</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-reveal>
+          <h3 class="skill-group__title">Backend / Full-Stack <span class="tag-learning">learning</span></h3>
+          <div class="skill-badges">
+            <span class="badge badge--learning">Node.js</span>
+            <span class="badge badge--learning">Express.js</span>
+            <span class="badge badge--learning">MongoDB</span>
+            <span class="badge badge--learning">Mongoose</span>
+            <span class="badge badge--learning">REST APIs</span>
+            <span class="badge badge--learning">MERN Stack</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-reveal>
+          <h3 class="skill-group__title">Programming</h3>
+          <div class="skill-badges">
+            <span class="badge">JavaScript</span>
+            <span class="badge">C++</span>
+            <span class="badge">Data Structures &amp; Algorithms</span>
+            <span class="badge">Problem Solving</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-reveal>
+          <h3 class="skill-group__title">Tools</h3>
+          <div class="skill-badges">
+            <span class="badge">Git</span>
+            <span class="badge">GitHub</span>
+            <span class="badge">VS Code</span>
+            <span class="badge">Git Bash</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECT -->
+  <section class="section project" id="project">
+    <div class="section__inner">
+      <div class="project-intro">
+        <h2 class="section__heading project-section-title" data-reveal>Things I've built<span class="accent-text">.</span></h2>
+        <p class="section__lead" data-reveal>Small ideas, shaped into useful experiences.</p>
+      </div>
+
+      <div class="project-archive">
+        <article class="project-entry project-entry--live">
+          <h2 class="section__heading project-name" data-reveal>MoodMatch</h2>
+          <p class="section__lead" data-reveal>Mood-Based Movie Recommendation Website</p>
+
+          <div class="project-showcase" data-reveal>
+        <div class="project-image-frame">
+          <img class="project-real-image" src="assets/moodmatch.png" alt="MoodMatch project preview">
+        </div>
+
+        <div class="project-info">
+          <p class="project-info__desc">
+            MoodMatch recommends movies based on mood and available time with a
+            clean, responsive interface.
+          </p>
+
+          <div class="project-info__links">
+            <a href="https://kapur-acharya.github.io/Moodwatch/" target="_blank" rel="noopener" class="btn btn--primary">Live Preview →</a>
+            <a href="https://github.com/kapur-acharya/Moodwatch" target="_blank" rel="noopener" class="btn btn--outline">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.02 1.75 2.68 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.39-5.27 5.67.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.21.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+              View Source
+            </a>
+          </div>
+
+          <div class="project-detail-block">
+            <h4>The idea</h4>
+            <p>Choosing a movie can be surprisingly difficult — moods change, and time is often limited. MoodMatch narrows the decision down instead of scrolling endlessly.</p>
+          </div>
+
+          <div class="project-detail-block">
+            <h4>How it works</h4>
+            <div class="flow">
+              <span>Choose Mood</span>
+              <span class="flow__arrow">↓</span>
+              <span>Choose Available Time</span>
+              <span class="flow__arrow">↓</span>
+              <span>Recommendation Logic</span>
+              <span class="flow__arrow">↓</span>
+              <span>Movie Recommendation</span>
+            </div>
+          </div>
+
+          <div class="project-detail-block">
+            <h4>Key features</h4>
+            <ul class="feature-list">
+              <li>Mood-based recommendations</li>
+              <li>Time-based recommendations</li>
+              <li>Responsive interface</li>
+              <li>Interactive UI</li>
+              <li>User-friendly design</li>
+            </ul>
+          </div>
+
+          <div class="project-detail-block project-detail-block--learned">
+            <h4>What I learned</h4>
+            <ul class="feature-list">
+              <li>Writing JavaScript logic for recommendation rules</li>
+              <li>DOM manipulation and handling user interaction</li>
+              <li>Structuring a small frontend project from scratch</li>
+              <li>Designing a responsive, user-friendly interface</li>
+              <li>Debugging real problems as the app grew</li>
+            </ul>
+          </div>
+        </div>
+          </div>
+        </article>
+
+        <div class="project-divider" data-reveal>
+          <span class="project-divider__label">Next build</span>
+        </div>
+
+        <article class="project-entry project-entry--building">
+          <h2 class="section__heading project-name project-heading--directcollab" data-reveal>DirectCollab</h2>
+          <p class="section__lead project-lead--directcollab" data-reveal>Creator × Brand Collaboration Platform</p>
+
+          <div class="project-showcase project-showcase--directcollab" data-reveal>
+        <div class="project-image-frame">
+          <img class="project-real-image" src="assets/loading.png" alt="DirectCollab project loading screen">
+        </div>
+
+        <div class="project-info">
+          <p class="project-info__desc">
+            DirectCollab connects creators and brands directly, cutting out the
+            back-and-forth of cold emails and manual outreach with a platform
+            built specifically for collaboration matching.
+          </p>
+
+          <div class="project-detail-block">
+            <h4>The idea</h4>
+            <p>Creators and brands both want to collaborate, but finding the right match usually means cold emails, DMs, and guesswork on both sides. DirectCollab removes that hassle with a platform designed around how creators and brands actually need to connect.</p>
+          </div>
+
+          <div class="project-detail-block">
+            <h4>How it works</h4>
+            <div class="flow">
+              <span>Dual Sign-Up (Creator / Brand)</span>
+              <span class="flow__arrow">↓</span>
+              <span>Role-Based Profile Setup</span>
+              <span class="flow__arrow">↓</span>
+              <span>Matching Engine</span>
+              <span class="flow__arrow">↓</span>
+              <span>Direct Collaboration — No Cold Emails</span>
+            </div>
+          </div>
+
+          <div class="project-detail-block">
+            <h4>Key features</h4>
+            <ul class="feature-list">
+              <li>Dual sign-up mode for Creators and Brands</li>
+              <li>Role-based matching system</li>
+              <li>Eliminates cold outreach between both sides</li>
+              <li>Streamlined collaboration workflow</li>
+            </ul>
+          </div>
+
+          <div class="project-detail-block project-detail-block--learned">
+            <h4>What I'm learning</h4>
+            <ul class="feature-list">
+              <li>Designing role-based user flows and permissions</li>
+              <li>Structuring a matching system between two user types</li>
+              <li>Planning a full-stack app beyond a single-page project</li>
+              <li>Thinking through platform-level product design</li>
+            </ul>
+          </div>
+        </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ART -->
+  <section class="section art" id="art">
+    <div class="section__inner">
+      <div class="art__header">
+        <div>
+          <h2 class="section__heading" data-reveal>Things I make <span class="accent-text">off-screen.</span></h2>
+          <p class="section__lead" data-reveal>Six spaces for sketches, studies, and digital pieces.</p>
+        </div>
+      </div>
+
+      <div class="art-grid">
+        <figure class="art-card art-card--wide" data-reveal><div class="art-card__placeholder"><img src="assets/clouddragon.jpg" alt="Cloud dragon artwork" loading="lazy"></div><figcaption>Cloud Dragon · character study</figcaption></figure>
+        <figure class="art-card" data-reveal><div class="art-card__placeholder"><img src="assets/canon.jpg" alt="Canon artwork" loading="lazy"></div><figcaption>Canon · portrait study</figcaption></figure>
+        <figure class="art-card" data-reveal><div class="art-card__placeholder"><img src="assets/sukuna.jpg" alt="Sukuna artwork" loading="lazy"></div><figcaption>Sukuna · character study</figcaption></figure>
+        <figure class="art-card" data-reveal><div class="art-card__placeholder"><img src="assets/sticheye.jpg" alt="Stitch eye artwork" loading="lazy"></div><figcaption>Stitch Eye · detail study</figcaption></figure>
+        <figure class="art-card" data-reveal><div class="art-card__placeholder"><img src="assets/kushal_perfume.jpg" alt="Kushal perfume artwork" loading="lazy"></div><figcaption>Kushal Perfume · visual study</figcaption></figure>
+        <figure class="art-card art-card--wide" data-reveal><div class="art-card__placeholder"><img src="assets/twodragons.jpg" alt="Two dragons artwork" loading="lazy"></div><figcaption>Two Dragons · fantasy study</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section class="section journey" id="journey">
+    <div class="section__inner">
+      <p class="section__eyebrow" data-reveal>05 · Journey</p>
+      <h2 class="section__heading" data-reveal>My journey so far.</h2>
+      <p class="section__lead" data-reveal>Not a résumé — a running log of what I've picked up along the way.</p>
+
+      <div class="timeline">
+        <div class="timeline__line" aria-hidden="true"></div>
+
+        <div class="timeline-item" data-reveal>
+          <span class="timeline-item__num">01</span>
+          <div class="timeline-item__body">
+            <span class="timeline-item__tag">HTML + CSS</span>
+            <h3>Started with Web Development</h3>
+            <p>Learning how websites are structured and styled.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal>
+          <span class="timeline-item__num">02</span>
+          <div class="timeline-item__body">
+            <span class="timeline-item__tag">Interactive Websites</span>
+            <h3>JavaScript</h3>
+            <p>Learning logic, DOM manipulation and browser APIs.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal>
+          <span class="timeline-item__num">03</span>
+          <div class="timeline-item__body">
+            <span class="timeline-item__tag">C++</span>
+            <h3>Programming &amp; DSA</h3>
+            <p>Problem solving, algorithms and data structures.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal>
+          <span class="timeline-item__num">04</span>
+          <div class="timeline-item__body">
+            <span class="timeline-item__tag">MoodMatch</span>
+            <h3>Building Projects</h3>
+            <p>Turning concepts into working applications.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal>
+          <span class="timeline-item__num">05</span>
+          <div class="timeline-item__body">
+            <span class="timeline-item__tag">MERN</span>
+            <h3>Full-Stack Development</h3>
+            <p>Exploring frontend, backend, databases and APIs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENTLY EXPLORING -->
+  <section class="section exploring">
+    <div class="section__inner">
+      <p class="section__eyebrow" data-reveal>06 · Right Now</p>
+      <h2 class="section__heading" data-reveal>Currently exploring.</h2>
+
+      <div class="explore-grid">
+        <div class="explore-card" data-reveal><span class="explore-card__pulse"></span>React</div>
+        <div class="explore-card" data-reveal><span class="explore-card__pulse"></span>Node.js</div>
+        <div class="explore-card" data-reveal><span class="explore-card__pulse"></span>Express.js</div>
+        <div class="explore-card" data-reveal><span class="explore-card__pulse"></span>MongoDB</div>
+        <div class="explore-card" data-reveal><span class="explore-card__pulse"></span>REST APIs</div>
+        <div class="explore-card" data-reveal><span class="explore-card__pulse"></span>Full-Stack Architecture</div>
+        <div class="explore-card" data-reveal><span class="explore-card__pulse"></span>Data Structures &amp; Algorithms</div>
+      </div>
+
+      <p class="exploring__note" data-reveal>There's always something new to build.</p>
+    </div>
+  </section>
+
+  <!-- BEYOND CODE -->
+  <section class="section beyond">
+    <div class="section__inner">
+      <p class="section__eyebrow" data-reveal>07 · Beyond Code</p>
+      <h2 class="section__heading" data-reveal>Beyond Code</h2>
+      <p class="section__lead" data-reveal>
+        Technology isn't the only thing I'm interested in. I also enjoy exploring
+        games, filmmaking, storytelling, and other creative forms of digital expression.
+      </p>
+
+      <div class="beyond-grid">
+        <article class="beyond-card beyond-card--code" data-reveal>
+          <span class="beyond-card__index">I.</span>
+          <h3>Code</h3>
+          <p>Building websites and software — this one included.</p>
+        </article>
+        <article class="beyond-card beyond-card--games" data-reveal>
+          <span class="beyond-card__index">II.</span>
+          <h3>Games</h3>
+          <p>Interested in interactive experiences and game development.</p>
+        </article>
+        <article class="beyond-card beyond-card--film" data-reveal>
+          <span class="beyond-card__index">III.</span>
+          <h3>Film</h3>
+          <p>Interested in filmmaking and visual storytelling.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION + EXPERIENCE -->
+  <section class="section edu-exp">
+    <div class="section__inner edu-exp__grid">
+      <div data-reveal>
+        <p class="section__eyebrow">08 · Education</p>
+        <h2 class="section__heading section__heading--sm">Academics</h2>
+        <div class="edu-card">
+          <div class="edu-card__marker" aria-hidden="true"></div>
+          <div>
+            <h3>Bachelor of Information Technology (BIT)</h3>
+            <span class="edu-card__status">Currently Studying</span>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal>
+        <p class="section__eyebrow">09 · Building Experience</p>
+        <h2 class="section__heading section__heading--sm">Not work history — build history</h2>
+        <p class="edu-exp__text">
+          My experience so far comes from learning, experimenting, and building
+          projects while studying BIT.
+        </p>
+        <ul class="feature-list">
+          <li>College projects</li>
+          <li>Personal experiments</li>
+          <li>Programming practice</li>
+          <li>Web development learning</li>
+          <li>Git / GitHub usage</li>
+          <li>DSA practice</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section stats">
+    <div class="section__inner">
+      <div class="stats-grid">
+        <div class="stat-card" data-reveal>
+          <span class="stat-card__value">01</span>
+          <span class="stat-card__label">Featured Project</span>
+        </div>
+        <div class="stat-card" data-reveal>
+          <span class="stat-card__value">MERN</span>
+          <span class="stat-card__label">Tech Stack Exploring</span>
+        </div>
+        <div class="stat-card" data-reveal>
+          <span class="stat-card__value">BIT</span>
+          <span class="stat-card__label">Student</span>
+        </div>
+        <div class="stat-card" data-reveal>
+          <span class="stat-card__value">∞</span>
+          <span class="stat-card__label">Things To Learn</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALL OF PIXELS -->
+  <section class="section wall" id="wall">
+    <div class="section__inner">
+      <h2 class="section__heading" data-reveal>Wall of <span class="accent-text">Pixels</span></h2>
+      <p class="section__lead" data-reveal>
+        Draw something small, sign it, and send it my way. Approved pieces show up on the wall below.
+      </p>
+
+      <div class="wall__grid" data-reveal>
+        <!-- Drawing tool -->
+        <div class="wall__composer">
+          <div class="wall__canvas-wrap">
+            <canvas id="pixelCanvas" width="160" height="160" aria-label="Pixel drawing canvas, 16 by 16 grid"></canvas>
+          </div>
+
+          <div class="wall__palette" id="wallPalette" role="group" aria-label="Color palette"></div>
+
+          <div class="wall__tools">
+            <button type="button" class="wall__tool-btn" id="wallEraser" aria-pressed="false">Eraser</button>
+            <button type="button" class="wall__tool-btn" id="wallClear">Clear</button>
+          </div>
+
+          <input type="text" id="wallName" class="wall__name-input" placeholder="Your name" maxlength="24" autocomplete="off">
+
+          <button type="button" class="btn btn--primary wall__submit" id="wallSubmit">Submit for Approval</button>
+          <p class="wall__status" id="wallStatus" aria-live="polite"></p>
+        </div>
+
+        <!-- Approved gallery -->
+        <div class="wall__gallery">
+          <p class="wall__gallery-label">The Wall</p>
+          <div class="wall__gallery-grid" id="wallGallery">
+            <p class="wall__gallery-empty" id="wallGalleryEmpty">Loading the wall…</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="section__inner contact__inner">
+      <h2 class="contact__heading" data-reveal>Have an idea? <span class="accent-text">Let's build it.</span></h2>
+      <p class="contact__desc" data-reveal>I'm always interested in learning, experimenting, and building something new.</p>
+
+      <a href="mailto:kapur.builds@gmail.com" class="contact__email" data-reveal>kapur.builds@gmail.com</a>
+
+      <div class="contact__cta" data-reveal>
+        <a href="mailto:kapur.builds@gmail.com" class="btn btn--primary">Email Me</a>
+        <a href="https://github.com/kapur-acharya" target="_blank" rel="noopener" class="btn btn--outline">GitHub</a>
+        <a href="https://linkedin.com/in/kapur-acharya" target="_blank" rel="noopener" class="btn btn--outline">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__logo">KAPUR<span class="dot">.</span></span>
+      <p>Tech enthusiast. Developer. Creator.</p>
+    </div>
+
+    <div class="footer__socials">
+      <a href="https://github.com/kapur-acharya" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+      <a href="https://linkedin.com/in/kapur-acharya" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+      <a href="mailto:kapur.builds@gmail.com" aria-label="Email">Email</a>
+    </div>
+
+    <div class="footer__meta">
+      <p>© 2026 Kapur Acharya</p>
+      <p>Built with HTML, CSS &amp; JavaScript — handcrafted, no frameworks.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+<script src="terminal-interactive.js" defer></script>
+<script src="skill-badges.js" defer></script>
+<script src="achievements.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="supabase-config.js" defer></script>
+<script src="guestbook.js" defer></script>
+</body>
+</html>

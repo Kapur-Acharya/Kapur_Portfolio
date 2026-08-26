@@ -1,0 +1,72 @@
+/* =========================================================
+   ART GALLERY
+   Artwork tiles, image fitting, and gallery responsiveness.
+   ========================================================= */
+.art__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.art__header .section__lead { margin-bottom: 0; }
+.art__count {
+  flex: 0 0 auto;
+  color: var(--text-faint);
+  font: 0.7rem var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.art-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr 1.35fr;
+  gap: 16px;
+  margin-top: 34px;
+}
+.art-card { margin: 0; min-width: 0; }
+.art-card--wide { grid-column: span 2; }
+.art-card__placeholder {
+  aspect-ratio: 1.25 / 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px dashed var(--border-strong);
+  background: linear-gradient(135deg, rgba(255,99,71,0.08), rgba(255,255,255,0.02));
+  color: var(--text-faint);
+  transition: border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+.art-card__placeholder img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--bg);
+  filter: saturate(0.85);
+  transition: filter .35s var(--ease), transform .35s var(--ease);
+}
+.art-card__placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8,8,8,0.1), rgba(8,8,8,0.55));
+  pointer-events: none;
+}
+.art-card__placeholder span {
+  position: relative;
+  z-index: 1;
+  color: var(--accent);
+  font: 0.72rem var(--font-mono);
+}
+.art-card:hover .art-card__placeholder { border-color: var(--accent); color: var(--text); transform: translateY(-3px) scale(1.08); }
+.art-card:hover .art-card__placeholder img { filter: saturate(1.1); transform: scale(1.03); }
+.art-card figcaption { padding-top: 9px; color: var(--text-faint); font: 0.68rem var(--font-mono); }
+
+@media (max-width: 700px) {
+  .art__header { display: block; }
+  .art__count { display: block; margin-top: 18px; }
+  .art-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .art-card--wide { grid-column: span 2; }
+}

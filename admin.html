@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Wall of Pixels</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #080808;
+    --bg-alt: #111111;
+    --bg-raise: #151515;
+    --text: #ffffff;
+    --text-dim: #a0a0a0;
+    --text-faint: #6e6e6e;
+    --accent: #ff6347;
+    --accent-dim: #cc4f39;
+    --border: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  h1 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+  }
+  .sub { color: var(--text-faint); font-family: var(--font-mono); font-size: 0.8rem; margin-bottom: 32px; }
+
+  /* Login form */
+  .login-box {
+    max-width: 360px;
+    margin: 80px auto;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+  .login-box h2 { font-family: var(--font-display); font-size: 1.2rem; margin-top: 0; }
+  input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    color: var(--text);
+    font-family: var(--font-body);
+    margin-bottom: 12px;
+    outline: none;
+  }
+  input:focus { border-color: var(--accent-dim); }
+  button {
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    border: none;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  .btn-primary { background: var(--accent); color: #fff; width: 100%; }
+  .btn-primary:hover { background: var(--accent-dim); }
+  .error-msg { color: var(--accent); font-size: 0.82rem; margin-top: 8px; min-height: 1.2em; }
+
+  /* Admin content */
+  #adminPanel { display: none; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .logout-btn { background: var(--bg-raise); color: var(--text-dim); border: 1px solid var(--border); }
+  .logout-btn:hover { color: var(--text); border-color: var(--border-strong); }
+
+  .queue-count {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+  .queue-count strong { color: var(--accent); }
+
+  .queue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .queue-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .queue-card canvas {
+    width: 100%;
+    aspect-ratio: 1/1;
+    image-rendering: pixelated;
+    border-radius: 6px;
+    border: 1px solid var(--border-strong);
+  }
+  .queue-card__name {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+  .queue-card__time {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-faint);
+  }
+  .queue-card__actions { display: flex; gap: 8px; }
+  .btn-approve { background: #2d7d4f; color: #fff; flex: 1; }
+  .btn-approve:hover { background: #256b42; }
+  .btn-reject { background: var(--bg-raise); color: var(--text-dim); border: 1px solid var(--border); flex: 1; }
+  .btn-reject:hover { color: var(--accent); border-color: var(--accent-dim); }
+
+  .empty-state {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 40px 0;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1>Wall of Pixels — Admin</h1>
+  <p class="sub">Review and approve visitor submissions</p>
+
+  <!-- LOGIN -->
+  <div class="login-box" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email" autocomplete="username">
+    <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
+    <button class="btn-primary" id="loginBtn">Log In</button>
+    <p class="error-msg" id="loginError"></p>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="adminPanel">
+    <div class="topbar">
+      <span></span>
+      <button class="logout-btn" id="logoutBtn">Log Out</button>
+    </div>
+
+    <p class="queue-count"><strong id="pendingCount">0</strong> pending submission(s)</p>
+
+    <div class="queue-grid" id="queueGrid">
+      <p class="empty-state" id="queueEmpty">Loading…</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const GRID_SIZE = 16;
+
+  const loginBox = document.getElementById('loginBox');
+  const adminPanel = document.getElementById('adminPanel');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const loginBtn = document.getElementById('loginBtn');
+  const loginError = document.getElementById('loginError');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const queueGrid = document.getElementById('queueGrid');
+  const queueEmpty = document.getElementById('queueEmpty');
+  const pendingCount = document.getElementById('pendingCount');
+
+  function renderGrid(ctx, sourceGrid, size) {
+    const c = size / GRID_SIZE;
+    ctx.clearRect(0, 0, size, size);
+    ctx.fillStyle = '#0d0d0d';
+    ctx.fillRect(0, 0, size, size);
+    for (let y = 0; y < GRID_SIZE; y++) {
+      for (let x = 0; x < GRID_SIZE; x++) {
+        const color = sourceGrid[y][x];
+        if (color) {
+          ctx.fillStyle = color;
+          ctx.fillRect(x * c, y * c, c, c);
+        }
+      }
+    }
+  }
+
+  async function checkSession() {
+    const { data } = await supabaseClient.auth.getSession();
+    if (data.session) {
+      showAdmin();
+    } else {
+      showLogin();
+    }
+  }
+
+  function showLogin() {
+    loginBox.style.display = 'block';
+    adminPanel.style.display = 'none';
+  }
+
+  function showAdmin() {
+    loginBox.style.display = 'none';
+    adminPanel.style.display = 'block';
+    loadQueue();
+  }
+
+  loginBtn.addEventListener('click', async () => {
+    loginError.textContent = '';
+    const email = loginEmail.value.trim();
+    const password = loginPassword.value;
+    if (!email || !password) {
+      loginError.textContent = 'Enter email and password.';
+      return;
+    }
+    loginBtn.disabled = true;
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    loginBtn.disabled = false;
+    if (error) {
+      loginError.textContent = 'Login failed — check your credentials.';
+      return;
+    }
+    showAdmin();
+  });
+
+  logoutBtn.addEventListener('click', async () => {
+    await supabaseClient.auth.signOut();
+    showLogin();
+  });
+
+  async function loadQueue() {
+    queueGrid.innerHTML = '';
+    queueGrid.appendChild(queueEmpty);
+    queueEmpty.textContent = 'Loading…';
+
+    const { data, error } = await supabaseClient
+      .from('submissions')
+      .select('id, name, pixel_data, created_at')
+      .eq('status', 'pending')
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      queueEmpty.textContent = 'Could not load submissions.';
+      console.error(error);
+      return;
+    }
+
+    pendingCount.textContent = data.length;
+
+    if (data.length === 0) {
+      queueEmpty.textContent = 'No pending submissions right now.';
+      return;
+    }
+
+    queueGrid.innerHTML = '';
+
+    data.forEach((item) => {
+      const card = document.createElement('div');
+      card.className = 'queue-card';
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 160;
+      canvas.height = 160;
+      renderGrid(canvas.getContext('2d'), item.pixel_data, 160);
+
+      const name = document.createElement('div');
+      name.className = 'queue-card__name';
+      name.textContent = item.name;
+
+      const time = document.createElement('div');
+      time.className = 'queue-card__time';
+      time.textContent = new Date(item.created_at).toLocaleString();
+
+      const actions = document.createElement('div');
+      actions.className = 'queue-card__actions';
+
+      const approveBtn = document.createElement('button');
+      approveBtn.className = 'btn-approve';
+      approveBtn.textContent = 'Approve';
+      approveBtn.addEventListener('click', () => updateStatus(item.id, 'approved', card));
+
+      const rejectBtn = document.createElement('button');
+      rejectBtn.className = 'btn-reject';
+      rejectBtn.textContent = 'Reject';
+      rejectBtn.addEventListener('click', () => updateStatus(item.id, 'rejected', card));
+
+      actions.appendChild(approveBtn);
+      actions.appendChild(rejectBtn);
+
+      card.appendChild(canvas);
+      card.appendChild(name);
+      card.appendChild(time);
+      card.appendChild(actions);
+      queueGrid.appendChild(card);
+    });
+  }
+
+  async function updateStatus(id, status, cardEl) {
+    const { error } = await supabaseClient
+      .from('submissions')
+      .update({ status })
+      .eq('id', id);
+
+    if (error) {
+      alert('Failed to update — try again.');
+      console.error(error);
+      return;
+    }
+
+    cardEl.remove();
+    const remaining = queueGrid.querySelectorAll('.queue-card').length;
+    pendingCount.textContent = remaining;
+    if (remaining === 0) {
+      queueGrid.appendChild(queueEmpty);
+      queueEmpty.textContent = 'No pending submissions right now.';
+    }
+  }
+
+  checkSession();
+})();
+</script>
+</body>
+</html>

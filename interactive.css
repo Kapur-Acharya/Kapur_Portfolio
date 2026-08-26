@@ -1,0 +1,180 @@
+/* =========================================================
+   KAPUR ACHARYA — INTERACTIVE FEATURES STYLESHEET
+   Styles for: live terminal input, achievement toasts,
+   confetti burst, skill badge levels.
+   Loaded after style.css — uses the same design tokens.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. Terminal input line
+--------------------------------------------------------- */
+.term-input-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.term-input-line .term-prompt {
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+.term-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  caret-color: var(--accent);
+  min-width: 0;
+}
+.term-input::placeholder { color: var(--text-faint); }
+
+/* ---------------------------------------------------------
+   2. Achievement toasts
+--------------------------------------------------------- */
+.achv-host {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  max-width: min(320px, calc(100vw - 32px));
+}
+
+.achv-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+}
+.achv-toast.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.achv-toast__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.achv-toast__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.achv-toast__label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.achv-toast__title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.achv-toast__desc {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .achv-host { top: auto; bottom: 16px; right: 16px; left: 16px; max-width: none; }
+}
+
+/* ---------------------------------------------------------
+   3. Confetti (Konami code)
+--------------------------------------------------------- */
+.confetti-host {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  border-radius: 1px;
+  animation-name: confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  opacity: 0.9;
+}
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------
+   4. Skill badge "familiarity" levels
+--------------------------------------------------------- */
+.skill-badges .badge {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.skill-badges .badge.is-bumped {
+  transform: scale(1.06);
+}
+.skill-badges .badge.is-lv1 {
+  border-color: rgba(255,99,71,0.4);
+  color: var(--text);
+}
+.skill-badges .badge.is-lv2 {
+  border-color: var(--accent-dim);
+  color: var(--text);
+  background: rgba(255,99,71,0.08);
+}
+.skill-badges .badge.is-lv3 {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(255,99,71,0.16);
+  box-shadow: 0 0 0 1px var(--accent-glow) inset;
+}
+.skill-badges .badge.is-lv3::after {
+  content: '★';
+  margin-left: 6px;
+  color: var(--accent);
+  font-size: 0.75em;
+}
+
+/* ---------------------------------------------------------
+   5. "Beyond code" card poke feedback
+--------------------------------------------------------- */
+.beyond-card.is-poked {
+  border-color: var(--accent-dim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achv-toast, .confetti-piece, .skill-badges .badge.is-bumped {
+    animation: none !important;
+    transition: none !important;
+  }
+}

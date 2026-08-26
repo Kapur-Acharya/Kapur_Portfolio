@@ -1,0 +1,71 @@
+/* =========================================================
+   NAVIGATION THEME
+   Slim studio-style navigation with a focused active state.
+   ========================================================= */
+.nav {
+  padding: 16px var(--pad);
+  border-bottom-color: transparent;
+  background: linear-gradient(180deg, rgba(8,8,8,0.7), transparent);
+}
+.nav.is-scrolled {
+  padding: 12px var(--pad);
+  background: rgba(8,8,8,0.82);
+  border-bottom-color: var(--border);
+}
+.nav__inner {
+  min-height: 42px;
+}
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+}
+.nav__links {
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.025);
+}
+.nav__link {
+  padding: 7px 13px;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  transition: color .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
+}
+.nav__link:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.06);
+}
+.nav__link.is-active {
+  color: #080808;
+  background: var(--accent);
+  box-shadow: 0 0 16px rgba(255,99,71,0.2);
+}
+.nav__link.is-active::after {
+  display: none;
+}
+.nav__toggle {
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.035);
+  transition: border-color .2s var(--ease), background .2s var(--ease);
+}
+.nav__toggle:hover {
+  border-color: var(--accent);
+  background: rgba(255,99,71,0.1);
+}
+@media (max-width: 860px) {
+  .nav__inner { min-height: 42px; }
+  .nav__links { display: none; }
+  .nav__toggle { display: flex; }
+}
